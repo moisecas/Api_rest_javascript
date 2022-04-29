@@ -4,34 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Api DOGSt</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Api DOGS</title>
 </head>
 <body style="text-align: center;">
-    <h1>Perritos aleatorios</h1> 
+    <h1>Mostrar perros lindos aleatoriamente</h1>  
+
+    <span id="error"></span>
+
     <label for="">Ver otros perritos</label>
-    <button onclick="reload()" >Recargar</button> 
-    <section id="randomMichis">
+
+    <button onclick="loadRandom()" >Recargar</button> 
+
+    <section id="randomMichis"> 
+
         <h1>Perros App </h1>
-        <article>
+        <!-- debemos enviar como parametro en el boton al evento onclick la función que va a guardar los elementos -->
+        <article> 
             <img id="img1"  width="150px" alt="Foto de perritos, variada">
-            <button>Guardar perro en favoritos</button> 
+            <button id="btn1" onclick="saveFavorites()">Guardar perro en favoritos</button> 
         </article>
+
         <article>
             <img id="img2"  width="150px" alt="Foto de perritos, variada">
-            <button>Guardar al perro en favoritos</button> 
+            <button id="btn2" onclick="saveFavorites()">Guardar al perro en favoritos</button> 
         </article>
+
         <article>
             <img id="img3"  width="150px" alt="Foto de perritos, variada">
-            <button>Guardar al perro en favoritos</button> 
+            <button id="btn3" onclick="saveFavorites()">Guardar al perro en favoritos</button> 
         </article>
 
 
 
     </section>
-    <section id="favoritesMichis">
+    <section id="favoritePerro">
         <h2>Perros favoritos </h2>
         <article>
-            <img id="img3"  width="150px" alt="Foto de perritos, variada">
+            <img id="img1"  width="150px" alt=""> 
             <button>Sacar al perro de favoritos</button> 
         </article>
     </section>
