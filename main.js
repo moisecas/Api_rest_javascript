@@ -25,7 +25,7 @@ async function loadRandom(){
         const img3 = document.getElementById('img3')
         const btn1 = document.getElementById('btn1');
         const btn2 = document.getElementById('btn2')
-        const btn3 = document.getElementById('btn2') 
+        const btn3 = document.getElementById('btn3') 
         img1.src= data[0].url //traemos la url de la imagen, la rendereizamos en el html, data posición 0 de la url y así
         img2.src= data[1].url 
         img3.src= data[2].url
