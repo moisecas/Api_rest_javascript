@@ -6,6 +6,11 @@ const api_url_random = "https://api.thedogapi.com/v1/images/search?limit=3&api_k
 //voy a enviarle a mi función de async esa constante con el contenido de url 
 const api_url_favorites = "https://api.thedogapi.com/v1/favourites?api_key=b64cd1c1-e8f5-4e3c-9a3f-8b80f8855ee2" //query parameters para enviar cierta cantidad de datos ?limit..
 
+const api_url_delete = (id) =>  `https://api.thedogapi.com/
+v1/favourites/${id}?api_key=b64cd1c1-e8f5-4e3c-9a3f-8b80f8855ee2` //para enviarle especificamente el id que deseo borrar
+
+//query parameters para enviar cierta cantidad de datos ?limit..
+
 const spanError = document.getElementById('error') 
 
 
@@ -51,9 +56,16 @@ async function loadFavorites(){
         spanError.innerHTML = "hubo un error al cargar la información" + res.status + data.message; 
 
     }else{
+        const section = document.getElementById('favoritePerro')
+        section.innerHTML="";
+        const h2 = document.createElement('h2');
+        const h2Text = document.createTextNode('Perros favoritos')
+        h2.appendChild(h2Text); 
+        section.appendChild(h2); 
+
         data.forEach(perro => {
             //manipulación del dom
-            const section = document.getElementById('favoritePerro')
+            
             const article = document.createElement('article'); 
             const img = document.createElement('img'); 
             const btn = document.createElement('button');  
@@ -66,6 +78,7 @@ async function loadFavorites(){
             btn.appendChild(btnText);
             
             article.appendChild(img)
+            btn.onclick=() => deleteFavorite(perro.id); //funcón eliminar en arrow function
             article.appendChild(btn) //insertamos en el article
 
             section.appendChild(article)//insertamos en la section a article
@@ -101,9 +114,26 @@ async function saveFavorites(id){//nueva función asincrona para guardar las ima
     if(res.status !==200){
         spanError.innerHTML = "hubo un error al cargar la información" + res.status + data.message;  
 
+    }else{
+        console.log("Dog save")
+        loadFavorites(); //para que se muestre los perros en tiempo real que elimine alguno de favoritos
     }
 }
 
+async function deleteFavorite (id){
+    const res = await fetch(api_url_delete(id),{
+        method:'DELETE',
+
+    });
+    const data = await res.json();
+    if(res.status !==200){
+        spanError.innerHTML = "hubo un error al cargar la información" + res.status + data.message;  
+
+    }else{
+        console.log("Dog eliminado de favoritos")
+        loadFavorites(); //para ver en tiempo real cuando se borra, cargue nuevamente los favoritos
+    } 
+}
 
 loadRandom() 
 loadFavorites()
